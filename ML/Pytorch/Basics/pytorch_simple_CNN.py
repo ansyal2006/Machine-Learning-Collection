@@ -106,9 +106,9 @@ def check_accuracy(loader, model):
             y = y.to(device=device)
 
             scores = model(x)
-            _, predictions = scores.max(1)
-            num_correct += (predictions == y).sum()
-            num_samples += predictions.size(0)
+            _, predictions = scores.max(1) # the dimension 0 is batch size, we are applying max function across dim=1 (max on scores for each individual image in a batch)
+            num_correct += (predictions == y).sum() 
+            num_samples += predictions.size(0) 
 
 
     model.train()
